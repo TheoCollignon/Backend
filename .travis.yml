@@ -1,26 +1,21 @@
 env:
   global:
   - CC_TEST_REPORTER_ID=c045f466c1e541a33abe007298a5d14fc38d59fb34889f12649e8bab2f0b4c44
-
 language: ruby
 rvm:
-  - 2.5.7
-
+- 2.5.7
 before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
   > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
-
-  script:
+script:
 - bundle exec rails db:migrate RAILS_ENV=test
-- bundle exec rake  
-
+- bundle exec rake
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
-
 deploy:
   provider: heroku
   app: backend-lp4a
   api_key:
-    secure: 139b2871-b8eb-4a8e-b46f-9507ed8cff43
+    secure: V3EWAoUhjsS8mZUzEnfYNuOOPMBsU8CIPlIlej8oG8AvOeEyyycfeDmtJvUSIvVnhNzDfvvQttQowOPfjhyCtYkcj31fpboQQAbpMbeb94FR/517TyARBfgUneLQcEG5WCwiW7s4QjE6JSgAsmUrVz/54457qYbHvMHuqSrvJrF74lKanOLUqolG77oo9sIe8ftciXDtxup9VaXAugV05KYetdzgn9g8MUEbRyfIqMzaLHe6iz0hcmjbV7zrG4ymS5Ry0fFJ9yiqetzCYVobI8r1WM1fwf3+eXAPUsyOzsSKzshq1IMYYGAZ2HY9HoCS3J++a+T8qmSaH5srjFNQUgks4ZqrKXB+t5YlJh6uxjsIA+yZHHop1Mnc1EgL0LcoNs0PhuIO0CfP3pCw5En6z5fu9QS6YcZcMvn/qxPKnel6EyE2BaHo4nkCN0AOjvEN5DGJgfzH8JgkLznQwZzGB3IFOCwuwR7moqyNos3iuInWD8lH7UrytUahvFoFMPLFwaDjHaQSo6K/IL9303lGncknleg3ZJWK7/BYj7QTbOtlLJPXgGJNOzx6t0fwu/h+PqeKvNElqB/NB9ldhjuaXjaVGh1r3ijdEz8AacPUzjfhjmZd+7oeXrFCXwXW9V/FPYJ0enrDR6AEkO62BWw9r3Q7so4D7IRISSNuLyC8yKM=

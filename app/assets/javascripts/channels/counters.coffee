@@ -7,3 +7,4 @@ App.counters = App.cable.subscriptions.create "CountersChannel",
 
   received: (data) ->
     console.log(data)
+    document.getElementById("counter"+data.id).innerHTML = data.value
